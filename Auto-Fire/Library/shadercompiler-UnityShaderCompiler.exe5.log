@@ -1,0 +1,52 @@
+Base path: 'D:/Programming/Unity_editor/2019.3.5f1/Editor/Data', plugins path 'D:/Programming/Unity_editor/2019.3.5f1/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  api=4 insize=7960 outsize=1553 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=9919 outsize=1879 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=9919 outsize=1911 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=7959 outsize=2040 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=1546 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=2024 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=3163 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=1316 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=1306 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=1883 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=1336 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=49356 outsize=2416 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=68835 outsize=6028 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1069 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1005 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1023 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=701 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=854 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1264 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1856 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1364 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1354 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1306 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=29386 outsize=1341 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=45671 outsize=6224 ok=1
