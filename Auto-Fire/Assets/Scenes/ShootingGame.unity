@@ -480,6 +480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToonSoldier
       objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: c6acf3f29c109e4439950c8f6a85cb2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: c6acf3f29c109e4439950c8f6a85cb2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -558,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 43bc855c754c1d34ba32e32dd63ea86c, type: 2}
     - target: {fileID: 9500000, guid: c6acf3f29c109e4439950c8f6a85cb2b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6acf3f29c109e4439950c8f6a85cb2b, type: 3}
@@ -678,7 +682,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -701,11 +705,10 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   maxStep: 0
   torque: 1
-  bulletCount: 30
+  bulletCount: 250
   bullet: {fileID: 158912, guid: 05fc4d742a550a049885e8aac79b49d4, type: 3}
   bullet_emitter: {fileID: 55163558}
   bullet_forward_force: 5000
-  animator: {fileID: 1638349726}
 --- !u!114 &1638349725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,21 +724,15 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 10
     numStackedVectorObservations: 1
-    vectorActionSize: 03000000
+    vectorActionSize: 01000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: ShooterBrain
   TeamId: 0
   m_UseChildSensors: 1
---- !u!95 &1638349726 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: c6acf3f29c109e4439950c8f6a85cb2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 769722648}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1638349727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,25 +762,6 @@ CapsuleCollider:
   m_Height: 2.63
   m_Direction: 1
   m_Center: {x: 0, y: 1.3060722, z: 0}
---- !u!114 &1638349729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638349722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms: []
 --- !u!1 &1751865563
 GameObject:
   m_ObjectHideFlags: 0

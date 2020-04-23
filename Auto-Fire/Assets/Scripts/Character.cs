@@ -5,11 +5,11 @@ using MLAgents.Sensors;
 
 public class Character : Agent
 {
-    [Header("速度"), Range(1, 100)]
-    public float torque = 10;
+    [Header("旋轉速度"), Range(1, 20)]
+    public float torque = 5;
 
-    [Header("子彈數量"), Range(5, 500)]
-    public int bulletCount = 30;
+    [Header("子彈數量"), Range(30, 500)]
+    public int bulletCount = 3;
 
     [Header("子彈的種類")]
     public GameObject bullet;
@@ -26,11 +26,6 @@ public class Character : Agent
     private int remainBullet;
 
     /// <summary>
-    /// 是否射擊：0為沒有、1為有
-    /// </summary>
-    private float isShoot;
-
-    /// <summary>
     /// 人物鋼體
     /// </summary>
     private Rigidbody rigChar;
@@ -41,11 +36,6 @@ public class Character : Agent
     private Rigidbody rigBullet;
 
     /// <summary>
-    /// 取得人物動作控制器
-    /// </summary>
-    public Animator animator;
-
-    /// <summary>
     /// 遊戲開始時：取得人物、子彈的剛體
     /// 將剩餘的子彈填充
     /// </summary>
@@ -54,6 +44,7 @@ public class Character : Agent
         rigChar = GetComponent<Rigidbody>();
         rigBullet = bullet.GetComponent<Rigidbody>();
         remainBullet = bulletCount;
+        InvokeRepeating("Shoot", 0.1f, 0.1f);
     }
 
     /// <summary>
@@ -106,7 +97,7 @@ public class Character : Agent
         }
 
         // 子彈數量用完，失敗：扣1分並結束
-        if (bulletCount == 0 || transform.position.y < 0)
+        if (remainBullet == 0)
         {
             SetReward(-1);
             EndEpisode();
@@ -122,55 +113,13 @@ public class Character : Agent
         // 提供開發者控制的方式
         var action = new float[1];
         action[0] = Input.GetAxis("Horizontal");
-        Debug.Log(action[0]);
         return action;
     }
 
     /// <summary>
-    /// 將滑鼠按下的類別轉成數值
+    /// 射擊
     /// </summary>
-    /// <param name="temp"></param>
-    /// <returns></returns>
-    private float shootBtoF(bool temp)
-    {
-        if (temp == true)
-        {
-            return 1.0f;
-        }
-        else
-        {
-            return 0.0f;
-        }
-    }
-
-    /// <summary>
-    /// 因參數而變更角色射擊動畫
-    /// </summary>
-    private void shoot(float temp)
-    {
-        if (temp == 1.0f)
-        {
-            animator.SetBool("Shoot", true);
-
-            // 生成子彈並給予外力移動
-            GameObject Temporary_Bullet_Handler;
-            Temporary_Bullet_Handler = Instantiate(bullet, new Vector3(bullet_emitter.transform.position.x, bullet_emitter.transform.position.y, bullet_emitter.transform.position.z+0.5f), bullet.transform.rotation) as GameObject;
-
-            Rigidbody Temporary_RigidBody;
-            Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
-            Temporary_RigidBody.AddForce(transform.forward * bullet_forward_force);
-            Destroy(Temporary_Bullet_Handler, 5.2f);
-        }
-        else if (temp == 0.0f)
-        {
-            animator.SetBool("Shoot", false);
-        }
-    }
-
-    /// <summary>
-    /// 自動重複射擊子彈
-    /// </summary>
-    private void Update()
+    private void Shoot()
     {
         // 生成子彈並給予外力移動
         GameObject Temporary_Bullet_Handler;
@@ -179,7 +128,8 @@ public class Character : Agent
         Rigidbody Temporary_RigidBody;
         Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
         Temporary_RigidBody.AddForce(transform.forward * bullet_forward_force);
-        remainBullet -= 1;
-        Destroy(Temporary_Bullet_Handler, 0.5f);
+        remainBullet = remainBullet - 1;
+        Debug.Log(remainBullet);
+        Destroy(Temporary_Bullet_Handler, 0.4f);
     }
 }
