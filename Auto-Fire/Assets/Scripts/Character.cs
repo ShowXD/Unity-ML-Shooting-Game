@@ -8,7 +8,7 @@ public class Character : Agent
     [Header("旋轉速度"), Range(1, 20)]
     public float torque = 5;
 
-    [Header("子彈數量"), Range(30, 500)]
+    [Header("子彈數量"), Range(30, 300)]
     public int bulletCount = 3;
 
     [Header("子彈的種類")]
@@ -17,8 +17,8 @@ public class Character : Agent
     [Header("發射器")]
     public GameObject bullet_emitter;
 
-    [Header("子彈速度")]
-    public float bullet_forward_force = 100;
+    [Header("子彈速度"), Range(500, 2200)]
+    public float bullet_forward_force = 1500;
 
     /// <summary>
     /// 剩餘的子彈數量
@@ -63,8 +63,16 @@ public class Character : Agent
         // 子彈數量重置
         remainBullet = bulletCount;
 
+        //摧毀所有留下來的子彈
+        var clones = GameObject.FindGameObjectsWithTag("bullet");
+        foreach (var clone in clones)
+        {
+            Destroy(clone);
+        }
+
         // 子彈尚未命中標靶
         Bullet.getShot = false;
+        Bullet.getOne = 0;
     }
 
     /// <summary>
@@ -90,7 +98,7 @@ public class Character : Agent
         #endregion
 
         // 子彈打中目標，成功：加1分並結束
-        if (Bullet.getShot)
+        if (Bullet.getOne == 4)
         {
             SetReward(1);
             EndEpisode();
@@ -129,7 +137,11 @@ public class Character : Agent
         Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
         Temporary_RigidBody.AddForce(transform.forward * bullet_forward_force);
         remainBullet = remainBullet - 1;
-        Debug.Log(remainBullet);
-        Destroy(Temporary_Bullet_Handler, 0.4f);
+        Destroy(Temporary_Bullet_Handler, 1.0f);
+    }
+
+    private void Update()
+    {
+        Debug.Log(Bullet.getOne);
     }
 }

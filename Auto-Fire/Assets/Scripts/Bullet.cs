@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     /// </summary>
     public static bool getShot;
 
+    public static int getOne = 0;
+
     /// <summary>
     /// 觸發事件：碰到Is Trigger的物件會執行
     /// </summary>
@@ -15,7 +17,12 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == "target-sensor")
         {
-            getShot = true;
+            getOne = getOne + 1;
+            if (getOne == 5)
+            {
+                getShot = true;
+                getOne = 0;
+            }
         }
     }
 }
