@@ -9,7 +9,7 @@ public class Character : Agent
     public float torque = 5;
 
     [Header("子彈數量"), Range(30, 300)]
-    public int bulletCount = 3;
+    public int bulletCount = 100;
 
     [Header("子彈的種類")]
     public GameObject bullet;
@@ -71,7 +71,6 @@ public class Character : Agent
         }
 
         // 子彈尚未命中標靶
-        Bullet.getShot = false;
         Bullet.getOne = 0;
     }
 

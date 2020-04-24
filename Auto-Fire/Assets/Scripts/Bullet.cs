@@ -3,10 +3,8 @@
 public class Bullet : MonoBehaviour
 {
     /// <summary>
-    /// 子彈是否射中標靶
+    /// 子彈射中標靶的次數
     /// </summary>
-    public static bool getShot;
-
     public static int getOne = 0;
 
     /// <summary>
@@ -20,7 +18,6 @@ public class Bullet : MonoBehaviour
             getOne = getOne + 1;
             if (getOne == 5)
             {
-                getShot = true;
                 getOne = 0;
             }
         }
