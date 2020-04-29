@@ -3,9 +3,6 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Bullet
     - Character
-    Barracuda.dll:
-    - Barracuda.NNModel
-    - Barracuda.NNModelData
     Unity.ML-Agents.dll:
     - MLAgents.DecisionRequester
     - MLAgents.Policies.BehaviorParameters
@@ -63,10 +60,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11730}
-    - Class: 114
-      Script: {instanceID: 12852}
-    - Class: 114
-      Script: {instanceID: 13074}
     - Class: 114
       Script: {instanceID: 13588}
     - Class: 114
@@ -588,7 +581,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 65a85419d94c8f30ecf66d2f4272a2eb
+      Hash: 346ba463d2dc756f6215c82f10f97478
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Character
@@ -727,4 +720,4 @@ ScriptsOnlyBuild:
   platform: 20
   scenePathNames:
   - Assets/Scenes/ShootingGame.unity
-  playerPath: D:/Programming/GitHub/Unity-ML-Shooting-Game/Web
+  playerPath: D:/Programming/GitHub/Unity-ML-Shooting-Game/test

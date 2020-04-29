@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using MLAgents;
 using MLAgents.Sensors;
 
@@ -8,8 +7,11 @@ public class Character : Agent
     [Header("旋轉速度"), Range(1, 20)]
     public float torque = 5;
 
-    [Header("子彈數量"), Range(30, 300)]
-    public int bulletCount = 100;
+    [Header("子彈數量"), Range(1, 300)]
+    public int bulletCount = 25;
+
+    [Header("子彈需要命中的數量"), Range(1, 300)]
+    public int bulletLimit = 5;
 
     [Header("子彈的種類")]
     public GameObject bullet;
@@ -31,9 +33,10 @@ public class Character : Agent
     private Rigidbody rigChar;
 
     /// <summary>
-    /// 子彈鋼體
+    /// 取得視線物件
     /// </summary>
-    private Rigidbody rigBullet;
+    private GameObject sight;
+    private Rigidbody rigSight;
 
     /// <summary>
     /// 遊戲開始時：取得人物、子彈的剛體
@@ -42,9 +45,9 @@ public class Character : Agent
     private void Start()
     {
         rigChar = GetComponent<Rigidbody>();
-        rigBullet = bullet.GetComponent<Rigidbody>();
+        sight = GameObject.Find("Sight");
+        rigSight = sight.GetComponent<Rigidbody>();
         remainBullet = bulletCount;
-        InvokeRepeating("Shoot", 0.1f, 0.1f);
     }
 
     /// <summary>
@@ -55,10 +58,13 @@ public class Character : Agent
         // 重設剛體的旋轉方向
         rigChar.velocity = Vector3.zero;
         rigChar.angularVelocity = Vector3.zero;
+        
 
         // 隨機角色位置
-        Vector3 posChar = new Vector3(Random.Range(-6f, 6f), 0.05f, 0);
+        Vector3 posChar = new Vector3(Random.Range(-8f, 8f), 0.05f, 0f);
         transform.position = posChar;
+        Vector3 rotChar = new Vector3(0f, 0f, 0f);
+        transform.eulerAngles = rotChar;
 
         // 子彈數量重置
         remainBullet = bulletCount;
@@ -72,6 +78,11 @@ public class Character : Agent
 
         // 子彈尚未命中標靶
         Bullet.getOne = 0;
+        Sight.get = false;
+
+        // 子彈持續產生
+        CancelInvoke("Shoot");
+        InvokeRepeating("Shoot", 1.0f, 0.1f);
     }
 
     /// <summary>
@@ -82,7 +93,6 @@ public class Character : Agent
         // 加入觀測資料：角色位置、角色旋轉方向、是否射擊
         sensor.AddObservation(transform.position);
         sensor.AddObservation(transform.rotation);
-        sensor.AddObservation(rigBullet.position);
     }
 
     /// <summary>
@@ -91,21 +101,34 @@ public class Character : Agent
     /// <param name="vectorAction"></param>
     public override void OnActionReceived(float[] vectorAction)
     {
-        # region 使用參數控制角色
+        # region 使用參數控制角色、視線
         // 視角的rotation
         rigChar.AddTorque(transform.up * torque * vectorAction[0]);
+        
+        // 設置視線位置
+        Vector3 posSight = bullet_emitter.transform.position;
+        sight.transform.position = posSight;
+        sight.transform.rotation = transform.rotation;
         #endregion
 
         // 子彈打中目標，成功：加1分並結束
-        if (Bullet.getOne == 4)
+        if (Bullet.getOne == bulletLimit)
         {
+            Debug.Log("Success");
             SetReward(1);
             EndEpisode();
         }
+        //if (Sight.get)
+        //{
+        //    Debug.Log("Success");
+        //    SetReward(1);
+        //    EndEpisode();
+        //}
 
         // 子彈數量用完，失敗：扣1分並結束
         if (remainBullet == 0)
         {
+            Debug.Log("Failed");
             SetReward(-1);
             EndEpisode();
         }
@@ -130,7 +153,7 @@ public class Character : Agent
     {
         // 生成子彈並給予外力移動
         GameObject Temporary_Bullet_Handler;
-        Temporary_Bullet_Handler = Instantiate(bullet, new Vector3(bullet_emitter.transform.position.x, bullet_emitter.transform.position.y, bullet_emitter.transform.position.z + 0.5f), bullet.transform.rotation) as GameObject;
+        Temporary_Bullet_Handler = Instantiate(bullet, bullet_emitter.transform.position, bullet.transform.rotation) as GameObject;
 
         Rigidbody Temporary_RigidBody;
         Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
