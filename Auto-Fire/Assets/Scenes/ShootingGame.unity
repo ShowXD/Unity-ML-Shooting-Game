@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.4485498, g: 0.4948097, b: 0.55529255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 2
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
@@ -236,7 +236,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 96
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -261,8 +261,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21248558}
-  m_LocalRotation: {x: 0.30966243, y: -0, z: -0, w: 0.95084655}
-  m_LocalPosition: {x: 0, y: 5.42, z: -3.95}
+  m_LocalRotation: {x: -0.016376019, y: 0.982118, z: -0.10232124, w: -0.1571831}
+  m_LocalPosition: {x: 5.840293, y: 3.459254, z: 15.581427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4929,7 +4929,7 @@ MonoBehaviour:
     vectorActionSize: 01000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 8894dff92579eeb4fb2372c4961f27f3, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: ba6b58f3f7e961f4c8bde5d89b8658f9, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: ShooterBrain
@@ -4949,6 +4949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 10
   TakeActionsBetweenDecisions: 1
+  offsetStep: 0
 --- !u!136 &1638349728
 CapsuleCollider:
   m_ObjectHideFlags: 0
