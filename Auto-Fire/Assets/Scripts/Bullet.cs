@@ -16,6 +16,10 @@ public class Bullet : MonoBehaviour
         if (other.tag == "target-sensor")
         {
             getOne = getOne + 1;
+            if (getOne == 5)
+            {
+                getOne = 0;
+            }
         }
     }
 }
